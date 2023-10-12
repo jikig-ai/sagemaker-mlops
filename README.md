@@ -16,7 +16,7 @@ Install AWS Sagemaker python SDK through
 # Structure
 The repository is split between the main phases of MLOps:
 
-1. ```inference``` folder: Model Deployment & Inference
+1. ```deployment``` folder: Model Deployment to be ablke to perform Inference
 2. ```fine-tuning``` folder: Model Fine Tuning
 3. ```prompting``` folder: Prompting deployed models
 
