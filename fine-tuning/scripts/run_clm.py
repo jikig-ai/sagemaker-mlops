@@ -68,7 +68,8 @@ def parse_arge():
     args, _ = parser.parse_known_args()
 
     if args.hf_token:
-        print(f"Logging into the Hugging Face Hub with token {args.hf_token[:10]}...")
+        print(
+            f"Logging into the Hugging Face Hub with token {args.hf_token[:10]}...")
         login(token=args.hf_token)
 
     return args
@@ -211,7 +212,7 @@ def training_function(args):
     # Start training
     trainer.train()
 
-    sagemaker_save_dir="/opt/ml/model/"
+    sagemaker_save_dir = "/opt/ml/model/"
     if args.merge_weights:
         # merge adapter weights with base model and save
         # save int 4 model
@@ -228,9 +229,9 @@ def training_function(args):
             output_dir,
             low_cpu_mem_usage=True,
             torch_dtype=torch.float16,
-        )  
+        )
         # Merge LoRA and base model and save
-        model = model.merge_and_unload()        
+        model = model.merge_and_unload()
         model.save_pretrained(
             sagemaker_save_dir, safe_serialization=True, max_shard_size="2GB"
         )

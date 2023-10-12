@@ -14,7 +14,7 @@ Whether you're a data scientist, a machine learning engineer, or a software deve
 
 * A valid AWS Account setup with proper SageMaker Role called `sagemaker_execution_role` created: Follow [AWS Documentation](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html)
 
-* [HuggingFace](https://huggingface.co/join) Account and [User Access Token](https://huggingface.co/settings/tokens) 
+* [HuggingFace](https://huggingface.co/join) Account and [User Access Token](https://huggingface.co/settings/tokens). Please make sure to login to HuggingFace with the following command `huggingface-cli login --token YOUR_USER_ACCESS_TOKEN`
 
 * LLaMA 2 Access: Before you can start training, you need to accept the LLaMA 2 license to be able to use it by clicking on the Agree and access repository button on the model page at [LLaMA 2 7B](https://huggingface.co/meta-llama/Llama-2-7b-hf) 
 
