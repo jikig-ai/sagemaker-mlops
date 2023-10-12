@@ -4,6 +4,7 @@ import boto3
 from sagemaker.huggingface import get_huggingface_llm_image_uri
 import json
 from sagemaker.huggingface import HuggingFaceModel
+from huggingface_hub import HfFolder
 
 sess = sagemaker.Session()
 # sagemaker session bucket -> used for uploading data, models and logs
@@ -39,6 +40,8 @@ config = {
     'MAX_INPUT_LENGTH': json.dumps(1024),  # Max length of input text
     # Max length of the generation (including input text)
     'MAX_TOTAL_TOKENS': json.dumps(2048),
+    # huggingface token to access llama 2
+    'HF_API_TOKEN': HfFolder.get_token()
     # 'HF_MODEL_QUANTIZE': "bitsandbytes",# Comment in to quantize
 }
 
@@ -54,10 +57,10 @@ print("HF Model created, deploying it now...")
 # Deploy model to an endpoint
 # https://sagemaker.readthedocs.io/en/stable/api/inference/model.html#sagemaker.model.Model.deploy
 llm = llm_model.deploy(
-    initial_instance_count=1,
-    endpoint_name="Llama-2-7b-chat-hf-not-fine-tuned",
-    instance_type=instance_type,
-    # volume_size=400, # If using an instance with local SSD storage, volume_size must be None, e.g. p4 but not p3
-    # 10 minutes to be able to load the model
-    container_startup_health_check_timeout=health_check_timeout,
+  initial_instance_count=1,
+  endpoint_name="Llama-2-7b-chat-hf-not-fine-tuned-" + str(int(time.time())),
+  instance_type=instance_type,
+  # volume_size=400, # If using an instance with local SSD storage, volume_size must be None, e.g. p4 but not p3
+  # 10 minutes to be able to load the model
+  container_startup_health_check_timeout=health_check_timeout,
 )
