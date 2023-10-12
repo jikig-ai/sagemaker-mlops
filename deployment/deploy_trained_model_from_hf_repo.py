@@ -33,7 +33,7 @@ health_check_timeout = 300
 
 # Define Model and Endpoint configuration parameter
 config = {
-  'HF_MODEL_ID': "NousResearch/Llama-2-7b-chat-hf", # path to where sagemaker stores the model
+  'HF_MODEL_ID': "meta-llama/Llama-2-7b-hf", # path to where sagemaker stores the model
   'SM_NUM_GPUS': json.dumps(number_of_gpu), # Number of GPU used per replica
   'MAX_INPUT_LENGTH': json.dumps(1024), # Max length of input text
   'MAX_TOTAL_TOKENS': json.dumps(2048), # Max length of the generation (including input text)
